@@ -1,5 +1,9 @@
 #include "mainwindow.h"
+#include "../helpers/helpers.h"
 #include "./ui_mainwindow.h"
+
+#include <QFileDialog>
+#include <string>
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) , ui(new Ui::MainWindow) {
   ui->setupUi(this);
@@ -8,32 +12,63 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) , ui(new Ui::MainW
 
   connect(ui->restoreButton, &QPushButton::released, this, &MainWindow::RestoreButtonHandler);
   connect(ui->changeRestorePathButton, &QPushButton::released, this, &MainWindow::ChangeRestorePathButtonHandler);
+  
+  std::string path;
+  if (GetJSONPath("backup", path)) {
+    ui->statusBar->showMessage("Error occurred", 5000);
+  }
+  ui->backupPath->setText(path.c_str());
+
+  if (GetJSONPath("restore", path)) {
+    ui->statusBar->showMessage("Error occurred", 5000);
+  }
+  ui->restorePath->setText(path.c_str());
 }
 
 MainWindow::~MainWindow() {
-    delete ui;
+  delete ui;
 }
 
 void MainWindow::BackupButtonHandler() {
+  const char *action = "backup";
   // TODO: Are you shure want to backup your world?
-  printf("backup button\n");
 }
 
 void MainWindow::ChangeBackupPathButtonHandler() {
-  // TODO: Window with folder selection
-  printf("backup path button\n");
-
+  std::string dir = GetPathFromUser("backup");
+  if (dir == "") {
+    return;
+  }
+  ui->backupPath->setText(dir.c_str());
 }
 
 void MainWindow::RestoreButtonHandler() {
+  const char *action = "restore";
   // TODO: Are you shure want to restore your world?
-  printf("restore button\n");
-
 }
 
 void MainWindow::ChangeRestorePathButtonHandler() {
-  // TODO: Window with folder selection
-  printf("restore path button\n");
-  
+  std::string dir = GetPathFromUser("restore");
+  if (dir == "") {
+    return;
+  }
+  ui->restorePath->setText(dir.c_str());
 }
 
+std::string MainWindow::GetPathFromUser(const char *action) {
+  std::string dir;
+  if (GetJSONPath(action, dir)) {
+    ui->statusBar->showMessage("Error occurred", 5000);
+  }
+
+  dir = QFileDialog::getExistingDirectory(this, "Select Folder", dir.c_str()).toStdString();
+  if (dir == "") {
+    return "";
+  }
+
+  if (SetJSONPath(action, dir)) {
+    ui->statusBar->showMessage("Error occurred", 5000);
+  }
+
+  return dir;
+}

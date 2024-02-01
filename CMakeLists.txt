@@ -13,12 +13,20 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
+find_package(nlohmann_json 3.2.0 REQUIRED)
 
 set(PROJECT_SOURCES
         src/main.cpp
+        src/helpers/helpers.h
+        src/helpers/helpers.cpp
         src/ui/mainwindow.cpp
         src/ui/mainwindow.h
         src/ui/mainwindow.ui
+        json/config.json
+)
+
+set(RESOURCE_FILES
+        json/config.json
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -44,7 +52,10 @@ else()
     endif()
 endif()
 
-target_link_libraries(Backuper PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(Backuper 
+    PRIVATE Qt${QT_VERSION_MAJOR}::Widgets
+    PRIVATE nlohmann_json::nlohmann_json
+)
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
@@ -58,6 +69,7 @@ set_target_properties(Backuper PROPERTIES
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
     MACOSX_BUNDLE TRUE
     WIN32_EXECUTABLE TRUE
+    RESOURCE "${RESOURCE_FILES}"
 )
 
 include(GNUInstallDirs)
