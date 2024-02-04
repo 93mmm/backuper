@@ -22,11 +22,14 @@ set(PROJECT_SOURCES
         src/ui/mainwindow.cpp
         src/ui/mainwindow.h
         src/ui/mainwindow.ui
-        json/config.json
+        src/ui/widget.cpp
+        src/ui/widget.h
+        src/ui/widget.ui
+        src/json/config.json
 )
 
 set(RESOURCE_FILES
-        json/config.json
+        src/json/config.json
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

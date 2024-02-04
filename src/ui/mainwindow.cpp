@@ -30,8 +30,7 @@ MainWindow::~MainWindow() {
 }
 
 void MainWindow::BackupButtonHandler() {
-  const char *action = "backup";
-  // TODO: Are you shure want to backup your world?
+  w.ShowWindow(ui, "backup");
 }
 
 void MainWindow::ChangeBackupPathButtonHandler() {
@@ -43,8 +42,7 @@ void MainWindow::ChangeBackupPathButtonHandler() {
 }
 
 void MainWindow::RestoreButtonHandler() {
-  const char *action = "restore";
-  // TODO: Are you shure want to restore your world?
+  w.ShowWindow(ui, "restore");
 }
 
 void MainWindow::ChangeRestorePathButtonHandler() {

@@ -1,7 +1,6 @@
 #include "helpers.h"
 #include <nlohmann/json.hpp>
 
-#include <iostream>
 #include <fstream>
 #include <CoreFoundation/CFBundle.h>
 
@@ -64,6 +63,16 @@ int SetJSONPath(const std::string &action, const std::string &path) {
     return 1;
   }
 
-  std::cout << config.dump(2) << std::endl;
+  return 0;
+}
+
+int GetAllJSONPaths(std::string &backup, std::string &restore) {
+  nlohmann::json config;
+
+  if (ReadJSON(ConfigPath(), config)) {
+    return 1;
+  }
+  backup = config["backup_path"];
+  restore = config["restore_path"];
   return 0;
 }

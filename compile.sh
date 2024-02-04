@@ -32,6 +32,7 @@ elif [ $action = $release ]; then
 
 elif [ $action = $run_binary ]; then
   ./build/Backuper.app/Contents/MacOS/Backuper
+  clear
 
 elif [ $action = $clean ]; then
   rm -rf build

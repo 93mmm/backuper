@@ -31,57 +31,54 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Backuper</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout_2">
-    <item>
-     <layout class="QGridLayout" name="gridLayout_2">
-      <item row="1" column="0" colspan="2">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="2" column="0">
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
        <widget class="QPushButton" name="backupButton">
         <property name="text">
-         <string>Backup folder</string>
+         <string>Backup changes</string>
+        </property>
+        <property name="checkable">
+         <bool>false</bool>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
+        </property>
+        <property name="autoRepeat">
+         <bool>false</bool>
         </property>
        </widget>
       </item>
-      <item row="0" column="1">
+      <item>
+       <widget class="QPushButton" name="restoreButton">
+        <property name="text">
+         <string>Restore changes</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="0" column="0">
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="1" column="1">
        <widget class="QPushButton" name="changeBackupPathButton">
         <property name="text">
          <string>Change Folder</string>
         </property>
        </widget>
       </item>
-      <item row="0" column="0">
-       <widget class="QLineEdit" name="backupPath">
-        <property name="inputMask">
-         <string/>
-        </property>
+      <item row="4" column="0" colspan="2">
+       <widget class="QLabel" name="label_2">
         <property name="text">
-         <string>Path</string>
-        </property>
-        <property name="readOnly">
-         <bool>true</bool>
-        </property>
-        <property name="cursorMoveStyle">
-         <enum>Qt::LogicalMoveStyle</enum>
-        </property>
-        <property name="clearButtonEnabled">
-         <bool>false</bool>
+         <string>Folder to put the backup in there</string>
         </property>
        </widget>
       </item>
-     </layout>
-    </item>
-    <item>
-     <layout class="QGridLayout" name="gridLayout_3">
-      <item row="0" column="1">
-       <widget class="QPushButton" name="changeRestorePathButton">
-        <property name="text">
-         <string>Change Folder</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0">
+      <item row="5" column="0">
        <widget class="QLineEdit" name="restorePath">
         <property name="inputMask">
          <string/>
@@ -100,14 +97,66 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="0" colspan="2">
-       <widget class="QPushButton" name="restoreButton">
+      <item row="1" column="0">
+       <widget class="QLineEdit" name="backupPath">
+        <property name="inputMask">
+         <string/>
+        </property>
         <property name="text">
-         <string>Restore Folder</string>
+         <string>Path</string>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+        <property name="cursorMoveStyle">
+         <enum>Qt::LogicalMoveStyle</enum>
+        </property>
+        <property name="clearButtonEnabled">
+         <bool>false</bool>
         </property>
        </widget>
       </item>
+      <item row="0" column="0" colspan="2">
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>Folder that needs to be backed up</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="QPushButton" name="changeRestorePathButton">
+        <property name="text">
+         <string>Change Folder</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0" colspan="2">
+       <spacer name="verticalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
      </layout>
+    </item>
+    <item row="1" column="0">
+     <spacer name="verticalSpacer">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>40</height>
+       </size>
+      </property>
+     </spacer>
     </item>
    </layout>
   </widget>

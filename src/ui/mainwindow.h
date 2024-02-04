@@ -1,5 +1,6 @@
 #pragma once
 
+#include "widget.h"
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
@@ -10,7 +11,7 @@ QT_END_NAMESPACE
 
 
 class MainWindow : public QMainWindow {
-  Q_OBJECT
+Q_OBJECT
 
 public:
   MainWindow(QWidget *parent = nullptr);
@@ -26,4 +27,5 @@ private slots:
 private:
   Ui::MainWindow *ui;
   std::string GetPathFromUser(const char *action);
+  Widget w;
 };
